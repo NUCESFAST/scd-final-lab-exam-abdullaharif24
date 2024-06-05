@@ -1,0 +1,41 @@
+version: '3'
+services:
+  frontend:
+    build:
+      context: ./1762_frontend_client
+    ports:
+      - "1763:80"  # Change the host port to 1763
+
+  backend_post:
+    build:
+      context: ./1762_backend_post
+    ports:
+      - "1764:1762"  # Change the host port to 1764
+
+  backend_classrooms:
+    build:
+      context: ./1762_backend_classrooms
+    ports:
+      - "1765:1762"  # Change the host port to 1765
+
+  backend_event_bus:
+    build:
+      context: ./1762_backend_event_bus
+    ports:
+      - "1766:1762"  # Change the host port to 1766
+
+  backend_auth:
+    build:
+      context: ./1762_backend_auth
+    ports:
+      - "1767:1762"  # Change the host port to 1767
+
+  db:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+
+volumes:
+  mongodb_data:
